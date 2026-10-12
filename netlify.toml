@@ -1,0 +1,8 @@
+# Fusion Media website: static site in /public plus two serverless functions for the website check.
+# No build step: Netlify publishes /public as-is and bundles the functions.
+[build]
+  publish = "public"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
