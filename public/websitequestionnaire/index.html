@@ -1,0 +1,988 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brand Questionnaire | Fusion Media</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Layout: one calm reading column (form), charcoal studio band on top, sticky progress. Fusion Media tokens from fusionmedia.wtf. */
+:root{
+  --paper:#FFFFFF; --mist:#F1F1F1; --ink:#0E0E0E; --muted:#5C5C5C; --line:#DADADA; --field:#FFFFFF;
+  --accent:#B91C1C; --accent-press:#732730; --accent-soft:rgba(185,28,28,.09); --on-accent:#FFFFFF;
+  --band:#242424; --on-band:#F1F1F1; --on-band-2:#BEBEBE;
+  --ok:#1F6E45; --warn:#8A5300; --focus:rgba(185,28,28,.45);
+  --head:"Montserrat","Helvetica Neue",Arial,sans-serif;
+  --sans:"Source Sans 3","Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --r:6px; color-scheme:light;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#161616; --mist:#202020; --ink:#F1F1F1; --muted:#BEBEBE; --line:#3A3A3A; --field:#1C1C1C;
+  --accent:#E8717C; --accent-press:#F2A0A7; --accent-soft:rgba(232,113,124,.13); --on-accent:#0E0E0E;
+  --band:#0E0E0E; --ok:#7FD3A4; --warn:#E6B566; --focus:rgba(232,113,124,.55); color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --paper:#161616; --mist:#202020; --ink:#F1F1F1; --muted:#BEBEBE; --line:#3A3A3A; --field:#1C1C1C;
+  --accent:#E8717C; --accent-press:#F2A0A7; --accent-soft:rgba(232,113,124,.13); --on-accent:#0E0E0E;
+  --band:#0E0E0E; --ok:#7FD3A4; --warn:#E6B566; --focus:rgba(232,113,124,.55); color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 var(--sans)}
+[hidden]{display:none!important}
+img{max-width:100%}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* Studio band */
+.band{background:var(--band);color:var(--on-band);padding-top:env(safe-area-inset-top,0px)}
+.band .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:18px}
+.band img{height:22px;width:auto;display:block}
+.band .tag{font:600 12px/1.2 var(--head);letter-spacing:.12em;text-transform:uppercase;color:var(--on-band-2)}
+
+/* Progress */
+.progress{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.progress .wrap{padding-block:12px;display:grid;gap:8px}
+.progress ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.progress li{font:600 12px/1.2 var(--head);color:var(--muted);letter-spacing:.02em;min-width:0}
+.progress li span{display:block;height:4px;border-radius:2px;background:var(--line);margin-bottom:6px}
+.progress li.done span,.progress li.now span{background:var(--accent)}
+.progress li.now{color:var(--ink)}
+.progress .count{display:none;font:600 13px/1.2 var(--head)}
+@media (max-width:620px){ .progress li b{display:none} .progress .count{display:block} }
+
+/* Type */
+h1,h2,h3{font-family:var(--head);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-.01em}
+h2{font-size:clamp(24px,4vw,30px);font-weight:800}
+h3{font-size:18px;font-weight:700}
+.eyebrow{font:700 12px/1.2 var(--head);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.lede{font-size:19px;color:var(--muted);max-width:60ch}
+p{margin:0;max-width:65ch}
+.muted{color:var(--muted)}
+.small{font-size:15px}
+
+/* Steps & fields */
+main{padding-block:32px 72px}
+.step{display:grid;gap:28px}
+.step-head{display:grid;gap:10px}
+.group{display:grid;gap:22px;padding-top:24px;border-top:1px solid var(--line)}
+.group > h3{margin-bottom:-6px}
+.field{display:grid;gap:6px;min-width:0}
+.field > label,.field > .label,fieldset > legend{font-weight:700;font-size:16px}
+.req{color:var(--accent);margin-left:2px}
+.hint{font-size:15px;color:var(--muted);margin-top:-2px}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:8px;min-width:0}
+input[type=text],input[type=email],input[type=tel],input[type=url],textarea,select{
+  width:100%;font:inherit;font-size:17px;color:var(--ink);background:var(--field);
+  border:1.5px solid var(--line);border-radius:var(--r);padding:11px 12px;min-height:48px}
+textarea{min-height:96px;resize:vertical}
+input::placeholder,textarea::placeholder{color:var(--muted);opacity:.75}
+input:hover,textarea:hover,select:hover{border-color:var(--muted)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+input:focus,textarea:focus,select:focus{border-color:var(--accent);outline:3px solid var(--focus);outline-offset:0}
+.invalid input,.invalid textarea,.invalid select{border-color:var(--accent)}
+.err{color:var(--accent);font-size:15px;font-weight:600}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:10px}
+@media (max-width:560px){.pair{grid-template-columns:1fr}.pair + .pair{padding-top:8px;border-top:1px dashed var(--line)}}
+
+/* Chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative;display:inline-flex}
+.chip input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.chip span{display:inline-flex;align-items:center;min-height:44px;padding:8px 16px;border:1.5px solid var(--line);border-radius:999px;font-weight:600;font-size:15px;background:var(--field)}
+.chip input:checked + span{border-color:var(--accent);background:var(--accent-soft);color:var(--ink)}
+.chip input:checked + span::before{content:"✓";margin-right:6px;color:var(--accent)}
+.chip input:focus-visible + span{outline:3px solid var(--focus);outline-offset:2px}
+
+/* Buttons */
+.btn{font:700 16px/1 var(--head);letter-spacing:.01em;border-radius:var(--r);padding:15px 22px;min-height:48px;cursor:pointer;border:1.5px solid transparent;display:inline-flex;align-items:center;gap:8px}
+.btn.primary{background:var(--accent);color:var(--on-accent)}
+.btn.primary:hover{background:var(--accent-press);color:#fff}
+:root[data-theme="dark"] .btn.primary:hover{color:#0E0E0E}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn.primary:hover{color:#0E0E0E}}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--ink)}
+.btn.link{background:none;border:0;padding:6px 0;min-height:0;color:var(--accent);text-decoration:underline;text-underline-offset:3px;font-size:15px}
+.btn[disabled]{opacity:.55;cursor:not-allowed}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-top:28px;border-top:1px solid var(--line)}
+.saved{font-size:14px;color:var(--muted)}
+
+/* Welcome */
+.welcome-list{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.welcome-list li{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:baseline}
+.welcome-list b{font:800 15px/1 var(--head);color:var(--accent)}
+.promise{background:var(--mist);border-radius:var(--r);padding:16px 18px;font-size:16px}
+
+/* Voice */
+.sample{position:sticky;top:64px;z-index:3;background:var(--band);color:var(--on-band);border-radius:var(--r);padding:18px 20px;display:grid;gap:8px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.sample .eyebrow{color:#F2A0A7}
+.sample blockquote{margin:0;font:600 clamp(17px,2.6vw,21px)/1.45 var(--sans);max-width:none}
+.sample .profile{font-size:14px;color:var(--on-band-2)}
+.sliders{display:grid;gap:18px}
+.slider{display:grid;gap:4px}
+.slider .ends{display:flex;justify-content:space-between;gap:12px;font-weight:700;font-size:15px}
+.slider output{font-size:14px;color:var(--muted);text-align:center}
+input[type=range]{width:100%;accent-color:var(--accent);height:32px;margin:0;cursor:pointer}
+
+/* Colours */
+.swatch-list{display:grid;gap:8px}
+.swatch-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.swatch-row input[type=color]{width:56px;height:48px;padding:3px;border:1.5px solid var(--line);border-radius:var(--r);background:var(--field);cursor:pointer;flex:none}
+.swatch-row input[type=text]{max-width:150px;font-family:ui-monospace,Menlo,monospace;text-transform:uppercase}
+.swatch-row .btn.link{color:var(--muted)}
+.logo-picks{display:flex;flex-wrap:wrap;gap:8px}
+.logo-picks button{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line);background:var(--field);color:var(--ink);border-radius:999px;padding:6px 12px 6px 6px;font:600 14px/1 ui-monospace,Menlo,monospace;cursor:pointer;min-height:40px}
+.logo-picks i{width:26px;height:26px;border-radius:50%;display:block;border:1px solid rgba(0,0,0,.15)}
+.moods{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.mood{display:grid;gap:8px;text-align:left;border:1.5px solid var(--line);background:var(--field);color:var(--ink);border-radius:var(--r);padding:10px;cursor:pointer;font:inherit}
+.mood .bar{display:flex;height:46px;border-radius:4px;overflow:hidden}
+.mood .bar i{flex:1}
+.mood b{font:700 15px/1.2 var(--head)}
+.mood small{font-size:13px;color:var(--muted);line-height:1.35}
+.mood[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent) inset}
+.mood[aria-pressed="true"] b::after{content:" ✓";color:var(--accent)}
+.radios{display:grid;gap:8px}
+.radio{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--line);border-radius:var(--r);cursor:pointer;background:var(--field)}
+.radio input{margin-top:5px;accent-color:var(--accent);width:18px;height:18px;flex:none}
+.radio:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.radio span{display:grid}
+.radio small{color:var(--muted);font-size:14px}
+
+/* Files */
+.file{display:grid;gap:6px;padding:14px;border:1.5px dashed var(--line);border-radius:var(--r);background:var(--mist)}
+.file input[type=file]{font:inherit;font-size:15px;max-width:100%}
+.file .meta{font-size:14px;color:var(--muted)}
+.meter{display:grid;gap:6px}
+.meter .track{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.meter .fill{height:100%;width:0;background:var(--ok);transition:width .3s}
+.meter.over .fill{background:var(--accent)}
+.meter p{font-size:14px;font-variant-numeric:tabular-nums}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:16px;cursor:pointer}
+.check input{margin-top:5px;width:18px;height:18px;accent-color:var(--accent);flex:none}
+
+/* Notes */
+.note{border-left:3px solid var(--accent);background:var(--accent-soft);padding:12px 14px;border-radius:0 var(--r) var(--r) 0;font-size:15px}
+.note.calm{border-left-color:var(--muted);background:var(--mist)}
+
+/* Review */
+.review{display:grid;gap:18px}
+.review section{border:1.5px solid var(--line);border-radius:var(--r);padding:16px 18px;display:grid;gap:10px}
+.review header{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.review dl{margin:0;display:grid;grid-template-columns:minmax(120px,190px) minmax(0,1fr);gap:6px 16px;font-size:15px}
+.review dt{color:var(--muted)}
+.review dd{margin:0;overflow-wrap:anywhere;white-space:pre-line}
+.review .dots{display:inline-flex;gap:4px;vertical-align:middle;margin-right:4px}
+.review .dots i{width:16px;height:16px;border-radius:3px;display:inline-block;border:1px solid rgba(0,0,0,.15)}
+.review .empty{color:var(--muted);font-style:italic}
+@media (max-width:520px){.review dl{grid-template-columns:1fr}.review dd{margin-bottom:6px}}
+
+.finished{text-align:left;display:grid;gap:16px;padding-block:24px}
+.finished .tick{width:56px;height:56px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font:800 28px/1 var(--head)}
+footer{border-top:1px solid var(--line);padding-block:20px;font-size:14px;color:var(--muted)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="band">
+  <div class="wrap">
+    <img src="fusion-media-logo.png" alt="Fusion Media" width="143" height="22">
+    <span class="tag">Brand questionnaire</span>
+  </div>
+</div>
+
+<nav class="progress" aria-label="Progress" id="progress" hidden>
+  <div class="wrap">
+    <p class="count" id="progressCount">Section 1 of 5</p>
+    <ol>
+      <li data-for="1"><span></span><b>Business</b></li>
+      <li data-for="2"><span></span><b>Voice</b></li>
+      <li data-for="3"><span></span><b>Colours</b></li>
+      <li data-for="4"><span></span><b>Look &amp; files</b></li>
+      <li data-for="5"><span></span><b>Proof</b></li>
+      <li data-for="6"><span></span><b>Review</b></li>
+    </ol>
+  </div>
+</nav>
+
+<main class="wrap">
+<form name="brand-questionnaire" id="bq" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" novalidate>
+  <input type="hidden" name="form-name" value="brand-questionnaire">
+  <p hidden><label>Leave this empty <input name="bot-field"></label></p>
+  <input type="hidden" name="client_ref" id="client_ref">
+  <input type="hidden" name="customer_age" id="h_customer_age">
+  <input type="hidden" name="photo_style" id="h_photo_style">
+  <input type="hidden" name="brand_colours" id="h_brand_colours">
+  <input type="hidden" name="love_colours" id="h_love_colours">
+  <input type="hidden" name="moods" id="h_moods">
+  <input type="hidden" name="voice_summary" id="h_voice_summary">
+  <input type="hidden" name="brief_json" id="h_brief_json">
+
+  <!-- 0 · Welcome -->
+  <section class="step" data-step="0" aria-labelledby="t0">
+    <div class="step-head">
+      <p class="eyebrow">Before we design anything</p>
+      <h1 id="t0">Help us get <span class="js-client">your brand</span> right</h1>
+      <p class="lede">Your answers shape how your new website sounds, looks and what it can honestly say about you. It takes about 15 minutes.</p>
+    </div>
+    <ul class="welcome-list">
+      <li><b>1</b><span><strong>Your business and customers</strong>, in your own words.</span></li>
+      <li><b>2</b><span><strong>Your voice.</strong> Move six sliders and watch a sample line rewrite itself until it sounds like you.</span></li>
+      <li><b>3</b><span><strong>Your colours.</strong> Colours you already use, ones you love and ones to steer clear of.</span></li>
+      <li><b>4</b><span><strong>Look and files.</strong> Your logo, photos and websites you admire.</span></li>
+      <li><b>5</b><span><strong>Proof.</strong> Reviews, awards and licences we're allowed to mention.</span></li>
+    </ul>
+    <p class="promise">Questions marked <span class="req">*</span> are needed. Everything else is optional, so skip anything you're unsure about and we'll cover it on a call. Your answers are saved on this device as you go, so you can close the page and come back. <strong>Nothing goes on your website without your approval.</strong></p>
+    <div class="nav" style="border-top:0;padding-top:0">
+      <button type="button" class="btn primary" data-go="1">Start the questionnaire →</button>
+      <span class="saved js-resume" hidden>Welcome back. Your earlier answers are still here.</span>
+    </div>
+  </section>
+
+  <!-- 1 · Business & audience -->
+  <section class="step" data-step="1" aria-labelledby="t1" hidden>
+    <div class="step-head">
+      <p class="eyebrow">Section 1 of 5 · about 3 minutes</p>
+      <h2 id="t1" tabindex="-1">Your business and customers</h2>
+    </div>
+    <div class="row">
+      <div class="field"><label for="contact_name">Your name<span class="req">*</span></label><input type="text" id="contact_name" name="contact_name" autocomplete="name" data-req></div>
+      <div class="field"><label for="contact_role">Your role</label><input type="text" id="contact_role" name="contact_role" placeholder="e.g. Owner, Practice manager"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="contact_email">Email<span class="req">*</span></label><input type="email" id="contact_email" name="contact_email" autocomplete="email" data-req="email"></div>
+      <div class="field"><label for="contact_phone">Phone</label><input type="tel" id="contact_phone" name="contact_phone" autocomplete="tel"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="business_name">Business name<span class="req">*</span></label><input type="text" id="business_name" name="business_name" autocomplete="organization" data-req></div>
+      <div class="field"><label for="website">Current website</label><input type="url" id="website" name="website" placeholder="www.yourbusiness.com.au" inputmode="url"></div>
+    </div>
+    <div class="field">
+      <label for="industry">Which best describes your business?</label>
+      <select id="industry" name="industry">
+        <option value="general">Something else / general</option>
+        <option value="health">Health, pharmacy or wellbeing</option>
+        <option value="trades">Trades and home services</option>
+        <option value="building">Building and construction</option>
+        <option value="hospitality">Hospitality, retail or food</option>
+        <option value="professional">Professional services (finance, legal, consulting)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="what_you_do">What do you do, in one or two sentences?<span class="req">*</span></label>
+      <p class="hint" id="h-what">Say it the way you'd explain it to a new customer at a barbecue.</p>
+      <textarea id="what_you_do" name="what_you_do" aria-describedby="h-what" data-req></textarea>
+    </div>
+    <fieldset class="field">
+      <legend>Your top 3 services or products<span class="req">*</span></legend>
+      <p class="hint">The ones that matter most to your business. At least one, please.</p>
+      <div class="row">
+        <input type="text" id="service_1" name="service_1" aria-label="Service 1" data-req placeholder="Most important">
+        <input type="text" id="service_2" name="service_2" aria-label="Service 2">
+        <input type="text" id="service_3" name="service_3" aria-label="Service 3">
+      </div>
+    </fieldset>
+    <div class="field">
+      <label for="ideal_customer">Who is your ideal customer?<span class="req">*</span></label>
+      <p class="hint" id="h-ideal">Who they are, what they need from you, and what's usually going on for them when they find you.</p>
+      <textarea id="ideal_customer" name="ideal_customer" aria-describedby="h-ideal" data-req></textarea>
+    </div>
+    <fieldset class="field">
+      <legend>Roughly how old are most of your customers?</legend>
+      <p class="hint">Pick all that apply. This helps us choose text sizes and colour contrast that are easy for them to read.</p>
+      <div class="chips" data-group="customer_age">
+        <label class="chip"><input type="checkbox" value="under 25"><span>Under 25</span></label>
+        <label class="chip"><input type="checkbox" value="25-39"><span>25–39</span></label>
+        <label class="chip"><input type="checkbox" value="40-59"><span>40–59</span></label>
+        <label class="chip"><input type="checkbox" value="60-74"><span>60–74</span></label>
+        <label class="chip"><input type="checkbox" value="75+"><span>75+</span></label>
+      </div>
+    </fieldset>
+    <div class="field"><label for="area_served">Where are your customers?</label><input type="text" id="area_served" name="area_served" placeholder="e.g. Burleigh Heads and the southern Gold Coast, or Australia-wide"></div>
+    <div class="field">
+      <label for="why_choose">Why do customers choose you over others?</label>
+      <textarea id="why_choose" name="why_choose"></textarea>
+    </div>
+    <fieldset class="field">
+      <legend>The 3 questions customers ask you most</legend>
+      <p class="hint">These often become the most useful part of a website.</p>
+      <input type="text" id="faq_1" name="faq_1" aria-label="Question 1">
+      <input type="text" id="faq_2" name="faq_2" aria-label="Question 2">
+      <input type="text" id="faq_3" name="faq_3" aria-label="Question 3">
+    </fieldset>
+    <fieldset class="field">
+      <legend>2 or 3 competitors</legend>
+      <p class="hint">Name or website, and what you like or don't like about them.</p>
+      <div class="pair"><input type="text" id="comp_1" name="competitor_1" aria-label="Competitor 1 name or website"><input type="text" id="comp_1n" name="competitor_1_note" aria-label="What you like or dislike about competitor 1"></div>
+      <div class="pair"><input type="text" id="comp_2" name="competitor_2" aria-label="Competitor 2 name or website"><input type="text" id="comp_2n" name="competitor_2_note" aria-label="What you like or dislike about competitor 2"></div>
+      <div class="pair"><input type="text" id="comp_3" name="competitor_3" aria-label="Competitor 3 name or website"><input type="text" id="comp_3n" name="competitor_3_note" aria-label="What you like or dislike about competitor 3"></div>
+    </fieldset>
+    <div class="nav"><button type="button" class="btn ghost" data-go="0">← Back</button><span class="saved js-saved"></span><button type="button" class="btn primary" data-next>Next: your voice →</button></div>
+  </section>
+
+  <!-- 2 · Voice -->
+  <section class="step" data-step="2" aria-labelledby="t2" hidden>
+    <div class="step-head">
+      <p class="eyebrow">Section 2 of 5 · about 3 minutes</p>
+      <h2 id="t2" tabindex="-1">How should you sound?</h2>
+      <p class="muted">Move each slider until the sample below sounds like you talking to a customer. There's no right answer, and the middle is fine.</p>
+    </div>
+    <div class="sample" aria-live="polite">
+      <p class="eyebrow">Sample: your homepage intro</p>
+      <blockquote id="sampleText"></blockquote>
+      <p class="profile" id="voiceProfile"></p>
+    </div>
+    <div class="sliders" id="sliders"></div>
+    <div class="group">
+      <h3>In your own words</h3>
+      <fieldset class="field">
+        <legend>3 words that describe how you want to come across</legend>
+        <div class="row">
+          <input type="text" id="word_is_1" name="word_is_1" aria-label="Word 1" placeholder="e.g. friendly">
+          <input type="text" id="word_is_2" name="word_is_2" aria-label="Word 2" placeholder="e.g. reliable">
+          <input type="text" id="word_is_3" name="word_is_3" aria-label="Word 3" placeholder="e.g. local">
+        </div>
+      </fieldset>
+      <fieldset class="field">
+        <legend>3 words you never want to sound like</legend>
+        <div class="row">
+          <input type="text" id="word_not_1" name="word_not_1" aria-label="Never word 1" placeholder="e.g. salesy">
+          <input type="text" id="word_not_2" name="word_not_2" aria-label="Never word 2" placeholder="e.g. corporate">
+          <input type="text" id="word_not_3" name="word_not_3" aria-label="Never word 3" placeholder="e.g. cheap">
+        </div>
+      </fieldset>
+      <div class="field">
+        <label for="phrases">Words or phrases you and your customers actually use</label>
+        <p class="hint" id="h-phrases">Everyday terms, local slang, how customers describe their problem. For example "script" rather than "prescription".</p>
+        <textarea id="phrases" name="phrases" aria-describedby="h-phrases"></textarea>
+      </div>
+      <div class="field">
+        <label for="avoid_words">Words or topics to avoid</label>
+        <textarea id="avoid_words" name="avoid_words" placeholder="e.g. 'cheap', 'world-class', anything about competitors"></textarea>
+      </div>
+    </div>
+    <div class="nav"><button type="button" class="btn ghost" data-back>← Back</button><span class="saved js-saved"></span><button type="button" class="btn primary" data-next>Next: colours →</button></div>
+  </section>
+
+  <!-- 3 · Colours -->
+  <section class="step" data-step="3" aria-labelledby="t3" hidden>
+    <div class="step-head">
+      <p class="eyebrow">Section 3 of 5 · about 3 minutes</p>
+      <h2 id="t3" tabindex="-1">Your colours</h2>
+      <p class="muted">We'll turn these into a full colour palette that's easy to read for everyone, including people with colour-blindness. You don't need design knowledge, so pick what feels right.</p>
+    </div>
+    <fieldset class="field" id="brandField">
+      <legend>Colours you already use<span class="req">*</span></legend>
+      <p class="hint">From your logo, signage, uniforms or shopfront. Tap the swatch to pick, or type a colour code if you have one (like #B91C1C).</p>
+      <div class="swatch-list" id="brandList"></div>
+      <div class="chips" style="gap:12px;align-items:center">
+        <button type="button" class="btn ghost" id="addBrand">+ Add a colour</button>
+        <label class="check"><input type="checkbox" id="no_brand_colours" name="no_brand_colours" value="yes"> I don't have set colours yet</label>
+      </div>
+      <div id="logoPicksWrap" hidden>
+        <p class="hint">Colours we found in your logo. Tap one to add it:</p>
+        <div class="logo-picks" id="logoPicks"></div>
+      </div>
+      <p class="hint">Tip: upload your logo in section 4 and we'll suggest its colours here.</p>
+    </fieldset>
+    <fieldset class="field">
+      <legend>How attached are you to your current colours?</legend>
+      <div class="radios">
+        <label class="radio"><input type="radio" name="keep_brand" value="keep"><span><b>Keep them exactly</b><small>They're part of who we are.</small></span></label>
+        <label class="radio"><input type="radio" name="keep_brand" value="refine"><span><b>Keep them, but refine</b><small>Same family, freshened up.</small></span></label>
+        <label class="radio"><input type="radio" name="keep_brand" value="open"><span><b>Open to something new</b><small>Show us what works best.</small></span></label>
+      </div>
+    </fieldset>
+    <fieldset class="field">
+      <legend>Colours you love</legend>
+      <p class="hint">Optional. Colours you're drawn to, even if they're not in your brand yet.</p>
+      <div class="swatch-list" id="loveList"></div>
+      <div><button type="button" class="btn ghost" id="addLove">+ Add a colour</button></div>
+    </fieldset>
+    <div class="row">
+      <div class="field"><label for="hate_colours">Colours you dislike</label><input type="text" id="hate_colours" name="hate_colours" placeholder="e.g. purple, lime green"></div>
+      <div class="field"><label for="competitor_colours">Colours your competitors are known for</label><input type="text" id="competitor_colours" name="competitor_colours" placeholder="e.g. the big chain uses red and yellow"></div>
+    </div>
+    <fieldset class="field">
+      <legend>Which moods feel most like you?</legend>
+      <p class="hint">Pick up to 2. These are starting points for the feel, not final colours.</p>
+      <div class="moods" id="moods"></div>
+      <p class="err" id="moodMsg" hidden role="status">You can pick up to 2. Untick one to choose another.</p>
+    </fieldset>
+    <div class="nav"><button type="button" class="btn ghost" data-back>← Back</button><span class="saved js-saved"></span><button type="button" class="btn primary" data-next>Next: look &amp; files →</button></div>
+  </section>
+
+  <!-- 4 · Look & assets -->
+  <section class="step" data-step="4" aria-labelledby="t4" hidden>
+    <div class="step-head">
+      <p class="eyebrow">Section 4 of 5 · about 3 minutes</p>
+      <h2 id="t4" tabindex="-1">Your look and files</h2>
+    </div>
+    <fieldset class="field" id="logoField">
+      <legend>Your logo<span class="req">*</span></legend>
+      <p class="hint">The best version you have. SVG, PDF or EPS is ideal; a large PNG works too.</p>
+      <div class="file">
+        <input type="file" id="logo_file" name="logo_file" accept=".svg,.png,.jpg,.jpeg,.webp,.pdf,.eps,.ai,image/*,application/pdf">
+        <p class="meta" id="meta_logo_file">No file chosen.</p>
+      </div>
+      <label class="check"><input type="checkbox" id="no_logo" name="no_logo" value="yes"> I don't have a logo yet, or I'll email it separately</label>
+    </fieldset>
+    <div class="field"><label for="fonts">Fonts you currently use, if you know them</label><input type="text" id="fonts" name="fonts" placeholder="e.g. the font on our signage, or 'not sure'"></div>
+    <fieldset class="field">
+      <legend>Websites you like the look of</legend>
+      <p class="hint">Any industry. Tell us what you like: the colours, the photos, how easy it is to use.</p>
+      <div class="pair"><input type="url" id="site_1" name="site_liked_1" aria-label="Website 1" placeholder="Website address" inputmode="url"><input type="text" id="site_1n" name="site_liked_1_note" aria-label="What you like about website 1"></div>
+      <div class="pair"><input type="url" id="site_2" name="site_liked_2" aria-label="Website 2" placeholder="Website address" inputmode="url"><input type="text" id="site_2n" name="site_liked_2_note" aria-label="What you like about website 2"></div>
+      <div class="pair"><input type="url" id="site_3" name="site_liked_3" aria-label="Website 3" placeholder="Website address" inputmode="url"><input type="text" id="site_3n" name="site_liked_3_note" aria-label="What you like about website 3"></div>
+    </fieldset>
+    <div class="field"><label for="style_dislikes">Styles you don't like</label><textarea id="style_dislikes" name="style_dislikes" placeholder="e.g. too busy, stock photos of people in suits, dark websites"></textarea></div>
+    <fieldset class="field">
+      <legend>What kind of photos suit you?</legend>
+      <div class="chips" data-group="photo_style">
+        <label class="chip"><input type="checkbox" value="candid"><span>Real and candid</span></label>
+        <label class="chip"><input type="checkbox" value="polished"><span>Polished and professional</span></label>
+        <label class="chip"><input type="checkbox" value="illustrated"><span>Illustrations or graphics</span></label>
+        <label class="chip"><input type="checkbox" value="product"><span>Product or work close-ups</span></label>
+      </div>
+    </fieldset>
+    <fieldset class="field">
+      <legend>Do you have a strong main photo for your homepage?</legend>
+      <div class="radios">
+        <label class="radio"><input type="radio" name="hero_image" value="yes-uploading"><span><b>Yes, I'm uploading it below</b></span></label>
+        <label class="radio"><input type="radio" name="hero_image" value="have-photos-unsure"><span><b>I have photos but I'm not sure which</b><small>We'll help you choose.</small></span></label>
+        <label class="radio"><input type="radio" name="hero_image" value="need-shoot"><span><b>No, we'd like photos taken</b></span></label>
+        <label class="radio"><input type="radio" name="hero_image" value="stock-ok"><span><b>No, quality stock photos are fine</b></span></label>
+      </div>
+    </fieldset>
+    <fieldset class="field">
+      <legend>Photos of your team, premises or work</legend>
+      <p class="hint">Up to 3 here. We shrink large photos automatically before sending. For more photos, share a folder link (Google Drive, Dropbox, OneDrive).</p>
+      <div class="file"><input type="file" id="photo_1" name="photo_1" accept="image/*" aria-label="Photo 1"><p class="meta" id="meta_photo_1">No file chosen.</p></div>
+      <div class="file"><input type="file" id="photo_2" name="photo_2" accept="image/*" aria-label="Photo 2"><p class="meta" id="meta_photo_2">No file chosen.</p></div>
+      <div class="file"><input type="file" id="photo_3" name="photo_3" accept="image/*" aria-label="Photo 3"><p class="meta" id="meta_photo_3">No file chosen.</p></div>
+      <div class="meter" id="meter"><div class="track"><div class="fill" id="meterFill"></div></div><p id="meterText">0 MB of 8 MB used</p></div>
+    </fieldset>
+    <div class="field"><label for="photo_folder_link">Link to a shared folder of photos</label><input type="url" id="photo_folder_link" name="photo_folder_link" placeholder="https://drive.google.com/…" inputmode="url"></div>
+    <p class="note calm small">Files can't be saved between visits. If you close this page, please choose your files again before you submit.</p>
+    <div class="nav"><button type="button" class="btn ghost" data-back>← Back</button><span class="saved js-saved"></span><button type="button" class="btn primary" data-next>Next: proof →</button></div>
+  </section>
+
+  <!-- 5 · Proof & compliance -->
+  <section class="step" data-step="5" aria-labelledby="t5" hidden>
+    <div class="step-head">
+      <p class="eyebrow">Section 5 of 5 · about 3 minutes</p>
+      <h2 id="t5" tabindex="-1">What we can say about you</h2>
+      <p class="muted">Real proof wins customers. We only use what you give us here, and we'll check every claim with you before it goes live.</p>
+    </div>
+    <div class="note" id="healthNote" hidden>Health services can't use patient testimonials in their advertising, and that includes websites (AHPRA rules). Share reviews anyway so we understand what customers value; we'll use them for wording, not quotes.</div>
+    <div class="field"><label for="reviews_link">Where are your reviews?</label><input type="url" id="reviews_link" name="reviews_link" placeholder="Google Business Profile, Facebook or Product Review link" inputmode="url"></div>
+    <div class="field">
+      <label for="testimonials">Favourite customer comments</label>
+      <p class="hint" id="h-test">Paste 2 or 3, with the customer's first name if you have it.</p>
+      <textarea id="testimonials" name="testimonials" aria-describedby="h-test"></textarea>
+      <label class="check"><input type="checkbox" id="testimonial_permission" name="testimonial_permission" value="yes"> These customers are happy for their comments to be used publicly</label>
+    </div>
+    <div class="field"><label for="accreditations">Awards, accreditations, memberships</label><textarea id="accreditations" name="accreditations" placeholder="e.g. Master Builders member, 2025 local business award finalist"></textarea></div>
+    <div class="field"><label for="licences">Licence or registration numbers to display</label><input type="text" id="licences" name="licences" placeholder="e.g. QBCC 1234567, ABN"></div>
+    <fieldset class="field">
+      <legend>Claims you can back up</legend>
+      <p class="hint">For example "Family-owned since 1998" or "Same-day callouts". Tell us how we could show it's true.</p>
+      <div class="pair"><input type="text" id="claim_1" name="claim_1" aria-label="Claim 1"><input type="text" id="claim_1e" name="claim_1_evidence" aria-label="How we could show claim 1 is true" placeholder="How we know"></div>
+      <div class="pair"><input type="text" id="claim_2" name="claim_2" aria-label="Claim 2"><input type="text" id="claim_2e" name="claim_2_evidence" aria-label="How we could show claim 2 is true" placeholder="How we know"></div>
+      <div class="pair"><input type="text" id="claim_3" name="claim_3" aria-label="Claim 3"><input type="text" id="claim_3e" name="claim_3_evidence" aria-label="How we could show claim 3 is true" placeholder="How we know"></div>
+    </fieldset>
+    <fieldset class="field">
+      <legend>Does an industry body set rules on how you advertise?</legend>
+      <div class="radios">
+        <label class="radio"><input type="radio" name="regulated" value="yes"><span><b>Yes</b></span></label>
+        <label class="radio"><input type="radio" name="regulated" value="no"><span><b>No</b></span></label>
+        <label class="radio"><input type="radio" name="regulated" value="not-sure"><span><b>Not sure</b><small>We'll check for you.</small></span></label>
+      </div>
+      <input type="text" id="regulator" name="regulator" aria-label="Which body" placeholder="Which body?">
+    </fieldset>
+    <div class="nav"><button type="button" class="btn ghost" data-back>← Back</button><span class="saved js-saved"></span><button type="button" class="btn primary" data-next>Review my answers →</button></div>
+  </section>
+
+  <!-- 6 · Review -->
+  <section class="step" data-step="6" aria-labelledby="t6" hidden>
+    <div class="step-head">
+      <p class="eyebrow">Last step</p>
+      <h2 id="t6" tabindex="-1">Check your answers</h2>
+      <p class="muted">Use Edit to change anything. Blank answers are fine.</p>
+    </div>
+    <div class="review" id="review"></div>
+    <label class="check" id="consentWrap"><input type="checkbox" id="consent" name="consent" value="yes"> <span>This information is accurate, and I'm happy for Fusion Media to use it to develop our brand and website. Nothing will be published without my approval.<span class="req">*</span></span></label>
+    <p class="err" id="submitErr" role="alert" hidden></p>
+    <div class="nav">
+      <button type="button" class="btn ghost" data-back>← Back</button>
+      <button type="button" class="btn link" id="copyAnswers" hidden>Copy my answers instead</button>
+      <button type="submit" class="btn primary" id="submitBtn">Send to Fusion Media</button>
+    </div>
+  </section>
+
+  <!-- 7 · Done -->
+  <section class="step finished" data-step="7" aria-labelledby="t7" hidden>
+    <div class="tick" aria-hidden="true">✓</div>
+    <h2 id="t7" tabindex="-1">Thank you. It's with us.</h2>
+    <p class="lede">We'll read through everything and come back to you with any questions. Next, we'll turn your answers into a voice guide and colour palette for you to approve.</p>
+  </section>
+</form>
+</main>
+
+<footer><div class="wrap">Fusion Media · Brand, creative and web studio · Burleigh Heads, Gold Coast</div></footer>
+
+<script>
+(() => {
+  "use strict";
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const form = $("#bq");
+  const params = new URLSearchParams(location.search);
+  const clientParam = (params.get("client") || "").trim().slice(0, 80);
+  const industryParam = (params.get("industry") || "").trim();
+  const DRAFT_KEY = "fm-bq:" + (clientParam || "default");
+  const MAX_BYTES = 8 * 1024 * 1024, SAFE_BYTES = 7.5 * 1024 * 1024;
+  const store = { get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
+                  set(k,v){ try { localStorage.setItem(k,v); } catch(e){} },
+                  del(k){ try { localStorage.removeItem(k); } catch(e){} } };
+
+  /* ---------- Industry words for the live sample ---------- */
+  const IND = {
+    general:      { need:"what you need",                   pros:"team",                field:"our industry", reg:"" },
+    health:       { need:"your next appointment",          pros:"health professionals", field:"health care", reg:"e.g. AHPRA, the Pharmacy Board, TGA" },
+    trades:       { need:"your next job",                   pros:"tradespeople",        field:"the trade",    reg:"e.g. your state licensing body (QBCC in Queensland)" },
+    building:     { need:"your build",                      pros:"builders",            field:"building",     reg:"e.g. QBCC (Queensland) or your state building authority" },
+    hospitality:  { need:"your next visit",                 pros:"team",                field:"what we do",   reg:"e.g. food safety or liquor licensing rules" },
+    professional: { need:"your next project",               pros:"specialists",         field:"our field",    reg:"e.g. ASIC, the Tax Practitioners Board, the Law Society" }
+  };
+  const SLIDERS = [
+    { id:"formal_casual",       l:"Formal",      r:"Casual" },
+    { id:"warm_direct",         l:"Warm",        r:"Straight to the point" },
+    { id:"expert_plain",        l:"Expert",      r:"Plain-speaking" },
+    { id:"bold_understated",    l:"Bold",        r:"Understated" },
+    { id:"serious_playful",     l:"Serious",     r:"Playful" },
+    { id:"traditional_modern",  l:"Traditional", r:"Modern" }
+  ];
+  // Sentence A: formal_casual (row) x warm_direct (col)
+  const A = [
+    ["We would be delighted to look after {need}.", "We look after {need} with care and precision.", "We provide {need}. Contact us to get started."],
+    ["We'd love to help with {need}.",               "We help with {need}, start to finish.",           "{Need}, handled."],
+    ["Hey there! We'd love to sort {need} for you.", "Let's get {need} sorted.",                        "{Need}? Sorted. No fuss."]
+  ];
+  // Sentence B: expert_plain (row) x bold_understated (col)
+  const B = [
+    ["Our qualified {pros} set the standard in {field}.", "Our qualified {pros} follow current best practice in {field}.", "Our qualified {pros} quietly keep up with the latest in {field}."],
+    ["We know {field} inside out, and it shows.",          "We know {field} well and explain things clearly.",               "We know our stuff, and we're happy to explain it."],
+    ["No jargon. No runaround. Just results.",              "No jargon, just clear answers.",                                 "We keep it simple and talk you through it."]
+  ];
+  // Sentence C: serious_playful (row) x traditional_modern (col)
+  const C = [
+    ["Call us or visit us in person. We're here when you need us.", "Book online or give us a call.",               "Book online in seconds, any time."],
+    ["Pop in and say hello, or give us a call.",                     "Book online or drop by, whichever suits you.", "Tap to book online, any time."],
+    ["Come and say g'day. The kettle's always on.",                  "Book in, and we'll take it from there. Easy.", "Hit book and we'll do the rest. Easy as."]
+  ];
+  const band = v => v < 34 ? 0 : v <= 66 ? 1 : 2;
+  const describe = (v, s) => v < 15 ? "Very " + s.l.toLowerCase() : v < 34 ? "Leaning " + s.l.toLowerCase()
+                          : v <= 66 ? "Balanced" : v <= 85 ? "Leaning " + s.r.toLowerCase() : "Very " + s.r.toLowerCase();
+  const fill = (t, ind) => {
+    const w = IND[ind] || IND.general;
+    return t.replace("{Need}", w.need.charAt(0).toUpperCase() + w.need.slice(1)).replace("{need}", w.need)
+            .replace("{pros}", w.pros).replace("{field}", w.field);
+  };
+
+  // Build sliders
+  const sliderBox = $("#sliders");
+  SLIDERS.forEach(s => {
+    const d = document.createElement("div");
+    d.className = "slider";
+    d.innerHTML = `<div class="ends"><span id="${s.id}_l">${s.l}</span><span id="${s.id}_r">${s.r}</span></div>
+      <input type="range" min="0" max="100" step="1" value="50" id="v_${s.id}" name="voice_${s.id}" aria-label="${s.l} to ${s.r}">
+      <output for="v_${s.id}" id="o_${s.id}">Balanced</output>`;
+    sliderBox.appendChild(d);
+  });
+  const sv = id => +$("#v_" + id).value;
+  function updateVoice(){
+    const ind = $("#industry").value;
+    const text = [fill(A[band(sv("formal_casual"))][band(sv("warm_direct"))], ind),
+                  fill(B[band(sv("expert_plain"))][band(sv("bold_understated"))], ind),
+                  fill(C[band(sv("serious_playful"))][band(sv("traditional_modern"))], ind)].join(" ");
+    $("#sampleText").textContent = "“" + text + "”";
+    const traits = [];
+    SLIDERS.forEach(s => {
+      const v = sv(s.id), d = describe(v, s);
+      $("#o_" + s.id).textContent = d;
+      $("#v_" + s.id).setAttribute("aria-valuetext", d + " (" + v + " of 100)");
+      if (d !== "Balanced") traits.push(d.toLowerCase());
+    });
+    const summary = traits.length ? traits.join(" · ") : "balanced across the board";
+    $("#voiceProfile").textContent = "Your voice: " + summary;
+    return { text, summary };
+  }
+
+  /* ---------- Colours ---------- */
+  const MOODS = [
+    { k:"calm",     n:"Calm",           d:"Soft greens and sea tones",     c:["#2F5D62","#5E8B7E","#A7C4BC","#DFEEEA","#F7F7F2"] },
+    { k:"bold",     n:"Bold",           d:"Strong contrast, confident",    c:["#111111","#E63946","#F1C40F","#1D3557","#FFFFFF"] },
+    { k:"earthy",   n:"Earthy",         d:"Natural, grounded, crafted",    c:["#5B3A29","#A0522D","#C2A878","#6B705C","#EFE6DA"] },
+    { k:"premium",  n:"Premium",        d:"Deep tones with a gold touch",  c:["#0B0B0F","#1F2A44","#C9A86A","#E8E2D6","#FFFFFF"] },
+    { k:"fresh",    n:"Fresh",          d:"Light, coastal, optimistic",    c:["#0FA3B1","#B5E2FA","#EDDEA4","#F7A072","#F9F7F3"] },
+    { k:"playful",  n:"Playful",        d:"Bright, friendly, fun",         c:["#FF6B6B","#FFD93D","#6BCB77","#4D96FF","#FFF8E7"] },
+    { k:"clean",    n:"Clinical clean", d:"Trustworthy blues, lots of white", c:["#0A3D62","#3C8DBC","#2BB673","#E8F1F8","#FFFFFF"] },
+    { k:"warm",     n:"Warm local",     d:"Sunny, welcoming, neighbourly", c:["#C8553D","#F28F3B","#588B8B","#FFD5C2","#FFF5EE"] }
+  ];
+  const state = { brand: [], love: [], moods: [], logoPicks: [] };
+  const HEX = /^#?([0-9a-f]{6})$/i;
+  const normHex = v => { const m = String(v || "").trim().match(HEX); return m ? "#" + m[1].toUpperCase() : null; };
+
+  function renderSwatches(listKey, box){
+    box.innerHTML = "";
+    if (listKey === "brand" && state.brand.length) clearInvalid($("#brandField"));
+    state[listKey].forEach((hex, i) => {
+      const row = document.createElement("div");
+      row.className = "swatch-row";
+      const label = listKey === "brand" ? "Brand colour " + (i + 1) : "Colour you love " + (i + 1);
+      row.innerHTML = `<input type="color" value="${hex}" aria-label="${label} picker">
+        <input type="text" value="${hex}" aria-label="${label} code" maxlength="7" spellcheck="false">
+        <button type="button" class="btn link">Remove</button>`;
+      const [pick, txt, rm] = row.querySelectorAll("input,button");
+      pick.addEventListener("input", () => { state[listKey][i] = pick.value.toUpperCase(); txt.value = state[listKey][i]; saveDraft(); });
+      txt.addEventListener("change", () => { const h = normHex(txt.value); if (h){ state[listKey][i] = h; pick.value = h; txt.value = h; saveDraft(); } else { txt.value = state[listKey][i]; } });
+      rm.addEventListener("click", () => { state[listKey].splice(i, 1); renderSwatches(listKey, box); saveDraft(); });
+      box.appendChild(row);
+    });
+  }
+  const brandBox = $("#brandList"), loveBox = $("#loveList");
+  $("#addBrand").addEventListener("click", () => { if (state.brand.length < 6){ state.brand.push("#B91C1C"); renderSwatches("brand", brandBox); brandBox.lastElementChild.querySelector("input[type=color]").focus(); saveDraft(); }});
+  $("#addLove").addEventListener("click", () => { if (state.love.length < 4){ state.love.push("#2F5D62"); renderSwatches("love", loveBox); loveBox.lastElementChild.querySelector("input[type=color]").focus(); saveDraft(); }});
+
+  const moodBox = $("#moods");
+  MOODS.forEach(m => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "mood"; b.dataset.k = m.k; b.setAttribute("aria-pressed", "false");
+    b.innerHTML = `<span class="bar">${m.c.map(c => `<i style="background:${c}"></i>`).join("")}</span><b>${m.n}</b><small>${m.d}</small>`;
+    b.addEventListener("click", () => {
+      const on = state.moods.includes(m.k);
+      if (!on && state.moods.length >= 2){ $("#moodMsg").hidden = false; return; }
+      $("#moodMsg").hidden = true;
+      state.moods = on ? state.moods.filter(x => x !== m.k) : state.moods.concat(m.k);
+      syncMoods(); saveDraft();
+    });
+    moodBox.appendChild(b);
+  });
+  const syncMoods = () => $$(".mood").forEach(b => b.setAttribute("aria-pressed", String(state.moods.includes(b.dataset.k))));
+
+  // Pull colours from an uploaded raster/SVG logo
+  async function logoColours(file){
+    if (!file || !/^image\//.test(file.type)) return [];
+    const url = URL.createObjectURL(file);
+    try {
+      const img = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = url; });
+      const c = document.createElement("canvas"); c.width = c.height = 80;
+      const x = c.getContext("2d", { willReadFrequently: true }); x.drawImage(img, 0, 0, 80, 80);
+      const px = x.getImageData(0, 0, 80, 80).data, counts = new Map();
+      for (let i = 0; i < px.length; i += 4){
+        if (px[i + 3] < 200) continue;
+        const r = px[i] & 0xF0, g = px[i + 1] & 0xF0, b = px[i + 2] & 0xF0;
+        const key = (r << 16) | (g << 8) | b; counts.set(key, (counts.get(key) || 0) + 1);
+      }
+      const sorted = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+      const out = [];
+      for (const [k] of sorted){
+        const rgb = [(k >> 16) + 8, ((k >> 8) & 255) + 8, (k & 255) + 8].map(v => Math.min(255, v));
+        if (out.every(o => Math.hypot(o[0] - rgb[0], o[1] - rgb[1], o[2] - rgb[2]) > 60)) out.push(rgb);
+        if (out.length >= 5) break;
+      }
+      return out.map(([r, g, b]) => "#" + [r, g, b].map(v => v.toString(16).padStart(2, "0")).join("").toUpperCase());
+    } catch(e){ return []; } finally { URL.revokeObjectURL(url); }
+  }
+  function renderLogoPicks(){
+    const box = $("#logoPicks"); box.innerHTML = "";
+    $("#logoPicksWrap").hidden = !state.logoPicks.length;
+    state.logoPicks.forEach(hex => {
+      const b = document.createElement("button"); b.type = "button";
+      b.innerHTML = `<i style="background:${hex}"></i>${hex}`;
+      b.setAttribute("aria-label", "Add " + hex + " to brand colours");
+      b.addEventListener("click", () => { if (!state.brand.includes(hex) && state.brand.length < 6){ state.brand.push(hex); renderSwatches("brand", brandBox); saveDraft(); } });
+      box.appendChild(b);
+    });
+  }
+
+  /* ---------- Files: shrink photos, track size ---------- */
+  const files = {}; // name -> {blob, filename, original}
+  const fmtMB = b => (b / 1048576).toFixed(b < 1048576 ? 2 : 1) + " MB";
+  async function shrink(file, maxEdge, keepPng){
+    if (!/^image\/(jpeg|png|webp)$/.test(file.type)) return file;
+    if (file.size < 900 * 1024) return file;
+    try {
+      const bmp = await createImageBitmap(file);
+      const scale = Math.min(1, maxEdge / Math.max(bmp.width, bmp.height));
+      const c = document.createElement("canvas");
+      c.width = Math.round(bmp.width * scale); c.height = Math.round(bmp.height * scale);
+      c.getContext("2d").drawImage(bmp, 0, 0, c.width, c.height);
+      const type = keepPng && file.type === "image/png" ? "image/png" : "image/jpeg";
+      const blob = await new Promise(r => c.toBlob(r, type, 0.82));
+      return blob && blob.size < file.size ? blob : file;
+    } catch(e){ return file; }
+  }
+  function totalBytes(){ return Object.values(files).reduce((s, f) => s + f.blob.size, 0); }
+  function updateMeter(){
+    const t = totalBytes(), pct = Math.min(100, t / MAX_BYTES * 100);
+    $("#meterFill").style.width = pct + "%";
+    $("#meter").classList.toggle("over", t > SAFE_BYTES);
+    $("#meterText").textContent = fmtMB(t) + " of 8 MB used" + (t > SAFE_BYTES ? ". Too large to send: remove a photo or share a folder link instead." : "");
+  }
+  $$('input[type=file]').forEach(inp => {
+    inp.addEventListener("change", async () => {
+      const f = inp.files && inp.files[0], meta = $("#meta_" + inp.id);
+      if (!f){ delete files[inp.name]; meta.textContent = "No file chosen."; updateMeter(); return; }
+      meta.textContent = "Preparing " + f.name + "…";
+      const isLogo = inp.id === "logo_file";
+      const blob = await shrink(f, isLogo ? 2400 : 2000, isLogo);
+      const filename = blob === f ? f.name : f.name.replace(/\.[^.]+$/, "") + (blob.type === "image/png" ? ".png" : ".jpg");
+      files[inp.name] = { blob, filename, original: f.name };
+      meta.textContent = f.name + " · " + fmtMB(blob.size) + (blob !== f ? " (shrunk from " + fmtMB(f.size) + ")" : "");
+      updateMeter();
+      if (isLogo){ $("#no_logo").checked = false; clearInvalid($("#logoField")); state.logoPicks = await logoColours(f); renderLogoPicks(); }
+    });
+  });
+
+  /* ---------- Steps ---------- */
+  const steps = $$(".step");
+  let cur = 0;
+  /* UNLOCKED = true lets "Next" skip required fields (preview/testing). Set to false before sending to clients. */
+  const UNLOCKED = false;
+  function show(n, focus = true){
+    cur = n;
+    steps.forEach(s => s.hidden = +s.dataset.step !== n);
+    $("#progress").hidden = n === 0 || n === 7;
+    $$("#progress li").forEach(li => { const f = +li.dataset.for; li.className = f < n ? "done" : f === n ? "now" : ""; });
+    $("#progressCount").textContent = n === 6 ? "Review" : "Section " + n + " of 5";
+    if (n === 2) updateVoice();
+    if (n === 5) syncProofHints();
+    if (n === 6) renderReview();
+    if (n > 0 && n < 7) store.set(DRAFT_KEY + ":step", String(n));
+    window.scrollTo(0, 0);
+    const smp = $(".sample"); if (smp && n === 2) smp.style.top = ($("#progress").offsetHeight + 8) + "px";
+    if (focus){ const h = steps[n].querySelector("h1,h2"); if (h){ h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); } }
+  }
+  function clearInvalid(el){ el.classList.remove("invalid"); const e = el.querySelector(".err.v"); if (e) e.remove(); }
+  function flag(el, msg){
+    el.classList.add("invalid");
+    if (!el.querySelector(".err.v")){ const p = document.createElement("p"); p.className = "err v"; p.textContent = msg; el.appendChild(p); }
+  }
+  function validate(n){
+    const sec = steps[n]; let first = null;
+    $$(".invalid", sec).forEach(clearInvalid);
+    $$("[data-req]", sec).forEach(inp => {
+      const v = inp.value.trim(), wrap = inp.closest(".field");
+      let bad = !v, msg = "Please fill this in.";
+      if (!bad && inp.dataset.req === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){ bad = true; msg = "Please check the email address, e.g. name@business.com.au"; }
+      if (bad){ flag(wrap, msg); first = first || inp; }
+    });
+    if (n === 3 && !state.brand.length && !$("#no_brand_colours").checked){
+      flag($("#brandField"), "Add at least one colour, or tick \"I don't have set colours yet\"."); first = first || $("#addBrand");
+    }
+    if (n === 4 && !files.logo_file && !$("#no_logo").checked){
+      flag($("#logoField"), "Upload your logo, or tick the box if you'll send it separately."); first = first || $("#logo_file");
+    }
+    if (n === 4 && totalBytes() > SAFE_BYTES){ first = first || $("#photo_3"); }
+    if (first){ first.focus(); return false; }
+    return true;
+  }
+  form.addEventListener("click", e => {
+    const t = e.target.closest("[data-go],[data-next],[data-back],[data-edit]");
+    if (!t) return;
+    if (t.hasAttribute("data-go")) show(+t.dataset.go);
+    else if (t.hasAttribute("data-next")){ if (UNLOCKED || validate(cur)) show(cur + 1); }
+    else if (t.hasAttribute("data-back")) show(cur - 1);
+    else if (t.hasAttribute("data-edit")) show(+t.dataset.edit);
+  });
+  form.addEventListener("input", e => {
+    const f = e.target.closest(".invalid"); if (f && e.target.value) clearInvalid(f);
+    if (e.target.type === "range" || e.target.id === "industry") updateVoice();
+    if (e.target.id === "no_brand_colours" && e.target.checked) clearInvalid($("#brandField"));
+    if (e.target.id === "no_logo" && e.target.checked) clearInvalid($("#logoField"));
+    if (e.target.id === "industry") syncProofHints();
+    saveDraftSoon();
+  });
+  form.addEventListener("keydown", e => { if (e.key === "Enter" && e.target.tagName === "INPUT" && e.target.type !== "submit") e.preventDefault(); });
+
+  function syncProofHints(){
+    const ind = $("#industry").value;
+    $("#healthNote").hidden = ind !== "health";
+    $("#regulator").placeholder = "Which body? " + ((IND[ind] || IND.general).reg || "");
+  }
+
+  /* ---------- Collect ---------- */
+  const val = id => { const el = document.getElementById(id); return el ? el.value.trim() : ""; };
+  const radio = n => { const r = form.querySelector(`input[name="${n}"]:checked`); return r ? r.value : ""; };
+  const group = g => $$(`[data-group="${g}"] input:checked`).map(i => i.value);
+  const list = ids => ids.map(val).filter(Boolean);
+  function collect(){
+    const v = updateVoice(), sliders = {};
+    SLIDERS.forEach(s => sliders[s.id] = sv(s.id));
+    return {
+      meta: { form_version: "1.0", client_link: clientParam, industry: $("#industry").value, submitted_at: new Date().toISOString(), slider_scale: "0 = left word, 100 = right word" },
+      contact: { name: val("contact_name"), role: val("contact_role"), email: val("contact_email"), phone: val("contact_phone") },
+      business: {
+        name: val("business_name"), website: val("website"), what_you_do: val("what_you_do"),
+        services: list(["service_1","service_2","service_3"]), ideal_customer: val("ideal_customer"),
+        customer_age: group("customer_age"), area_served: val("area_served"), why_choose: val("why_choose"),
+        faqs: list(["faq_1","faq_2","faq_3"]),
+        competitors: [1,2,3].map(i => ({ name: val("comp_" + i), note: val("comp_" + i + "n") })).filter(c => c.name || c.note)
+      },
+      voice: {
+        sliders, summary: v.summary, sample_shown: v.text,
+        words_are: list(["word_is_1","word_is_2","word_is_3"]), words_never: list(["word_not_1","word_not_2","word_not_3"]),
+        phrases: val("phrases"), avoid: val("avoid_words")
+      },
+      colours: {
+        brand: state.brand.slice(), no_brand_colours: $("#no_brand_colours").checked, keep_brand: radio("keep_brand"),
+        love: state.love.slice(), hate: val("hate_colours"), competitor_colours: val("competitor_colours"),
+        moods: state.moods.map(k => { const m = MOODS.find(x => x.k === k); return { key: k, name: m.n, swatches: m.c }; }),
+        logo_suggested: state.logoPicks.slice()
+      },
+      look: {
+        logo_file: files.logo_file ? files.logo_file.filename : "", no_logo: $("#no_logo").checked, fonts: val("fonts"),
+        sites_liked: [1,2,3].map(i => ({ url: val("site_" + i), note: val("site_" + i + "n") })).filter(s => s.url || s.note),
+        dislikes: val("style_dislikes"), photo_style: group("photo_style"), hero_image: radio("hero_image"),
+        photo_files: ["photo_1","photo_2","photo_3"].filter(n => files[n]).map(n => files[n].filename),
+        photo_folder_link: val("photo_folder_link")
+      },
+      proof: {
+        status_note: "Client-supplied. Every item is USER-STATED until checked with evidence.",
+        reviews_link: val("reviews_link"), testimonials: val("testimonials"), testimonial_permission: $("#testimonial_permission").checked,
+        accreditations: val("accreditations"), licences: val("licences"),
+        claims: [1,2,3].map(i => ({ claim: val("claim_" + i), evidence: val("claim_" + i + "e"), confirmed: false })).filter(c => c.claim),
+        regulated: radio("regulated"), regulator: val("regulator")
+      }
+    };
+  }
+
+  /* ---------- Review ---------- */
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+  const row = (k, v) => `<dt>${k}</dt><dd>${v === "" || v == null || (Array.isArray(v) && !v.length) ? '<span class="empty">Not answered</span>' : (Array.isArray(v) ? esc(v.join(", ")) : esc(v))}</dd>`;
+  const dots = arr => arr.length ? `<span class="dots">${arr.map(h => `<i style="background:${esc(h)}"></i>`).join("")}</span>${esc(arr.join("  "))}` : '<span class="empty">None</span>';
+  const card = (step, title, body) => `<section><header><h3>${title}</h3><button type="button" class="btn link" data-edit="${step}">Edit</button></header><dl>${body}</dl></section>`;
+  const RL = { keep:"Keep them exactly", refine:"Keep, but refine", open:"Open to something new", "yes-uploading":"Uploading it", "have-photos-unsure":"Have photos, unsure which", "need-shoot":"Would like photos taken", "stock-ok":"Stock photos are fine", yes:"Yes", no:"No", "not-sure":"Not sure" };
+  function renderReview(){
+    const d = collect(), ind = $("#industry");
+    $("#review").innerHTML =
+      card(1, "Business and customers",
+        row("Contact", [d.contact.name, d.contact.role, d.contact.email, d.contact.phone].filter(Boolean).join(" · ")) +
+        row("Business", [d.business.name, d.business.website].filter(Boolean).join(" · ")) +
+        row("Type", ind.options[ind.selectedIndex].text) + row("What you do", d.business.what_you_do) +
+        row("Top services", d.business.services) + row("Ideal customer", d.business.ideal_customer) +
+        row("Customer ages", d.business.customer_age) + row("Area", d.business.area_served) +
+        row("Why customers choose you", d.business.why_choose) + row("Common questions", d.business.faqs.join("\n")) +
+        row("Competitors", d.business.competitors.map(c => c.name + (c.note ? " — " + c.note : "")).join("\n"))) +
+      card(2, "Voice",
+        row("Your voice", d.voice.summary) + row("Sample you settled on", d.voice.sample_shown) +
+        row("Come across as", d.voice.words_are) + row("Never sound", d.voice.words_never) +
+        row("Your words", d.voice.phrases) + row("Avoid", d.voice.avoid)) +
+      card(3, "Colours",
+        `<dt>Current colours</dt><dd>${d.colours.no_brand_colours ? "No set colours yet" : dots(d.colours.brand)}</dd>` +
+        row("Attachment", RL[d.colours.keep_brand] || "") + `<dt>Colours you love</dt><dd>${dots(d.colours.love)}</dd>` +
+        row("Dislike", d.colours.hate) + row("Competitor colours", d.colours.competitor_colours) +
+        row("Moods", d.colours.moods.map(m => m.name))) +
+      card(4, "Look and files",
+        row("Logo", d.look.no_logo ? "Sending separately / no logo yet" : d.look.logo_file) + row("Fonts", d.look.fonts) +
+        row("Websites you like", d.look.sites_liked.map(s => s.url + (s.note ? " — " + s.note : "")).join("\n")) +
+        row("Styles you dislike", d.look.dislikes) + row("Photo style", d.look.photo_style) +
+        row("Homepage photo", RL[d.look.hero_image] || "") + row("Photos attached", d.look.photo_files) +
+        row("Photo folder", d.look.photo_folder_link)) +
+      card(5, "Proof",
+        row("Reviews", d.proof.reviews_link) + row("Customer comments", d.proof.testimonials) +
+        row("Permission to quote", d.proof.testimonials ? (d.proof.testimonial_permission ? "Yes" : "Not confirmed") : "") +
+        row("Awards and memberships", d.proof.accreditations) + row("Licences", d.proof.licences) +
+        row("Claims", d.proof.claims.map(c => c.claim + (c.evidence ? " — " + c.evidence : "")).join("\n")) +
+        row("Advertising rules", [RL[d.proof.regulated] || "", d.proof.regulator].filter(Boolean).join(" · ")));
+  }
+
+  /* ---------- Draft save / restore ---------- */
+  let saveT = null;
+  let sent = false;
+  const saveDraftSoon = () => { if (sent) return; clearTimeout(saveT); saveT = setTimeout(saveDraft, 400); };
+  function saveDraft(){
+    if (sent) return;
+    const fields = {};
+    $$("input,textarea,select", form).forEach(el => {
+      if (!el.id || el.type === "file" || el.type === "hidden" || el.name === "bot-field") return;
+      if (el.type === "checkbox") fields[el.id] = el.checked;
+      else if (el.type === "radio"){ if (el.checked) fields["radio:" + el.name] = el.value; }
+      else fields[el.id] = el.value;
+    });
+    const groups = {}; $$("[data-group]").forEach(g => groups[g.dataset.group] = group(g.dataset.group));
+    store.set(DRAFT_KEY, JSON.stringify({ fields, groups, brand: state.brand, love: state.love, moods: state.moods, at: Date.now() }));
+    $$(".js-saved").forEach(s => s.textContent = "Saved on this device");
+  }
+  function restore(){
+    let d = null; try { d = JSON.parse(store.get(DRAFT_KEY) || "null"); } catch(e){}
+    if (!d) return false;
+    Object.entries(d.fields || {}).forEach(([k, v]) => {
+      if (k.startsWith("radio:")){ const r = form.querySelector(`input[name="${k.slice(6)}"][value="${CSS.escape(v)}"]`); if (r) r.checked = true; return; }
+      const el = document.getElementById(k); if (!el) return;
+      if (el.type === "checkbox") el.checked = !!v; else el.value = v;
+    });
+    Object.entries(d.groups || {}).forEach(([g, vals]) => $$(`[data-group="${g}"] input`).forEach(i => i.checked = vals.includes(i.value)));
+    state.brand = (d.brand || []).map(normHex).filter(Boolean);
+    state.love = (d.love || []).map(normHex).filter(Boolean);
+    state.moods = (d.moods || []).filter(k => MOODS.some(m => m.k === k)).slice(0, 2);
+    return true;
+  }
+
+  /* ---------- Submit ---------- */
+  async function copyAnswers(){
+    const txt = JSON.stringify(collect(), null, 2);
+    try { await navigator.clipboard.writeText(txt); $("#submitErr").textContent = "Copied. Paste your answers into an email to Fusion Media."; }
+    catch(e){ $("#submitErr").textContent = "Couldn't copy automatically. Please email Fusion Media and we'll send you another link."; }
+  }
+  $("#copyAnswers").addEventListener("click", copyAnswers);
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const err = $("#submitErr"); err.hidden = true;
+    for (let n = 1; n <= 5; n++){ if (!validate(n)){ show(n, false); validate(n); return; } }
+    if (!$("#consent").checked){ err.textContent = "Please tick the box to confirm before sending."; err.hidden = false; $("#consent").focus(); return; }
+    if (totalBytes() > SAFE_BYTES){ err.textContent = "Your files add up to more than 8 MB. Remove a photo in section 4 or share a folder link instead."; err.hidden = false; return; }
+    const d = collect();
+    $("#client_ref").value = clientParam || d.business.name;
+    $("#h_customer_age").value = d.business.customer_age.join(", ");
+    $("#h_photo_style").value = d.look.photo_style.join(", ");
+    $("#h_brand_colours").value = d.colours.no_brand_colours ? "none yet" : d.colours.brand.join(", ");
+    $("#h_love_colours").value = d.colours.love.join(", ");
+    $("#h_moods").value = d.colours.moods.map(m => m.name).join(", ");
+    $("#h_voice_summary").value = d.voice.summary + " | " + SLIDERS.map(s => s.id + "=" + d.voice.sliders[s.id]).join(" ");
+    $("#h_brief_json").value = JSON.stringify(d);
+    const fd = new FormData(form);
+    ["logo_file","photo_1","photo_2","photo_3"].forEach(n => { fd.delete(n); if (files[n]) fd.append(n, files[n].blob, files[n].filename); });
+    const btn = $("#submitBtn"); btn.disabled = true; btn.textContent = "Sending…";
+    try {
+      const res = await fetch("/", { method: "POST", body: fd });
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      sent = true; clearTimeout(saveT); store.del(DRAFT_KEY); store.del(DRAFT_KEY + ":step");
+      show(7);
+    } catch(ex){
+      err.textContent = location.protocol === "file:"
+        ? "This is a preview copy, so it can't send. Open the link Fusion Media gave you to submit."
+        : "Your answers didn't send. Check your internet connection and try again. If it keeps failing, use 'Copy my answers instead' and email them to us.";
+      err.hidden = false; $("#copyAnswers").hidden = false;
+      btn.disabled = false; btn.textContent = "Try again";
+    }
+  });
+
+  /* ---------- Init ---------- */
+  const had = restore();
+  if (!val("business_name") && clientParam) $("#business_name").value = clientParam;
+  if (IND[industryParam] && !had) $("#industry").value = industryParam;
+  if (clientParam) $$(".js-client").forEach(el => el.textContent = clientParam + "'s brand");
+  renderSwatches("brand", brandBox); renderSwatches("love", loveBox); syncMoods(); updateVoice(); syncProofHints(); updateMeter();
+  if (had){ $(".js-resume").hidden = false; const s = +store.get(DRAFT_KEY + ":step"); if (s > 0 && s < 7) $("[data-go='1']").dataset.go = String(s); $("[data-go]").textContent = s > 1 ? "Continue where you left off →" : "Start the questionnaire →"; }
+  show(0, false);
+})();
+</script>
+</body>
+</html>
